@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //InvokeRepeating("EnemySpawn", 0, 3);
+        InvokeRepeating("EnemySpawn", 0, 3);
         for(int i = 0; i < weapons.Length; i++)
         {
             weapons[i].SetActive(false);
