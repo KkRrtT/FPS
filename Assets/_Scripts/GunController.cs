@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using OpenCover.Framework.Model;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class GunController : MonoBehaviour
     public GameObject muzzleFlashGun;
     public GameObject muzzleFlashPistol;
     public Transform muzzlePoint;
+    [SerializeField] TMP_Text pistolAmmo;
+    [SerializeField] TMP_Text gunAmmo;
     private float fireRate = 0.1f;
     [SerializeField] float fireRateGun = 0.2f;
     public float damage;
@@ -44,6 +47,7 @@ public class GunController : MonoBehaviour
             {
                 StartCoroutine(MuzzleFlash(muzzleFlashPistol));
                 ShootBullet(ref handgunBullets, ref canShootPistol);
+                pistolAmmo.text = handgunBullets.ToString();
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -61,12 +65,15 @@ public class GunController : MonoBehaviour
                     fireRate = fireRateGun;
                     StartCoroutine(MuzzleFlash(muzzleFlashGun));
                     ShootBullet(ref m14Bullets, ref canShootGun);
+                    gunAmmo.text = m14Bullets.ToString();
+
                 }
             }
             if (canShootGun && Input.GetMouseButtonDown(0))
             {
                 StartCoroutine(MuzzleFlash(muzzleFlashGun));
                 ShootBullet(ref m14Bullets, ref canShootGun);
+                gunAmmo.text = m14Bullets.ToString();
             }
             if (Input.GetKeyDown(KeyCode.R))
             {

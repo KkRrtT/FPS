@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] weapons;
     [SerializeField] GameObject[] cameras;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject[] ammoTekst;
     public bool mode = default;
     public int kills = default;
     private bool a = true;
@@ -68,8 +69,10 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < weapons.Length; i++)
         {
             weapons[i].SetActive(false);
+            ammoTekst[i].SetActive(false);
         }
         weapons[index].SetActive(true);
+        ammoTekst[index].SetActive(true);
 
 
 
