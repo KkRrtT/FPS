@@ -16,7 +16,7 @@ public class PostFX : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             ToggleFX(ref enableFX, ref fxVolume);
-        }
+        }        
     }
 
     private void ToggleFX(ref bool a, ref PostProcessVolume b)

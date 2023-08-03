@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth = 100;
     public float currentHealth;
-    [SerializeField] GameObject ded;
+    [SerializeField] bool rot = true;
     private PlayerControlViaAxis control;
+    [SerializeField] GameObject ded;
     [SerializeField] MouseLook look;
     [SerializeField] Transform player;
-    [SerializeField] bool rot = true;
     [SerializeField] Slider slider;
+    [SerializeField] PostProcessVolume deathFX;
 
 
     private void Start()
     {
         currentHealth = maxHealth;
+        deathFX.weight = 0f;
         ded.SetActive(false);
         control = GetComponent<PlayerControlViaAxis>();
         slider.value = maxHealth;
@@ -28,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         slider.value = currentHealth;
+        deathFX.weight += damage / 100;
         if(currentHealth <= 0 )
         {
             Death();

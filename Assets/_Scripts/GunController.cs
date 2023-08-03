@@ -7,6 +7,8 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public GameObject muzzleFlashGun;
+    public GameObject muzzleFlashPistol;
     public Transform muzzlePoint;
     private float fireRate = 0.1f;
     [SerializeField] float fireRateGun = 0.2f;
@@ -29,14 +31,15 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
-        if(manager.mode == false)
+        if (manager.mode == false)
         {
             //aimBloom = 20;
             if (canShoot && Input.GetMouseButtonDown(0))
             {
+                StartCoroutine(MuzzleFlash(muzzleFlashPistol));
                 ShootBullet();
             }
-            if(Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 Reload(manager.mode);
             }
@@ -47,13 +50,22 @@ public class GunController : MonoBehaviour
             if (canShoot && Input.GetMouseButton(0))
             {
                 fireRate -= Time.deltaTime;
-                if(fireRate <= 0)
+                if (fireRate <= 0)
                 {
                     fireRate = fireRateGun;
+                    StartCoroutine(MuzzleFlash(muzzleFlashGun));
                     ShootBullet();
+
                 }
-            
+
                 //StartCoroutine(FireRate());
+            }
+            if (canShoot && Input.GetMouseButtonDown(0))
+            {
+                StartCoroutine(MuzzleFlash(muzzleFlashGun));
+                ShootBullet();
+
+
             }
         }
     }
@@ -76,7 +88,9 @@ public class GunController : MonoBehaviour
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         bulletRB.velocity = speed * ray.direction;
 
-        if(bulletScript != null )
+
+
+        if (bulletScript != null)
         {
             bulletScript.damage = damage;
         }
@@ -99,10 +113,27 @@ public class GunController : MonoBehaviour
             handgunBullets = handgunBulletsFull;
             canShoot = true;
         }
-        else if(timer < 0 && mode == true)
+        else if (timer < 0 && mode == true)
         {
             m14Bullets = m14BulletsFull;
             canShoot = true;
         }
     }
+
+    private void Flash(GameObject flash)
+    {
+        flash.SetActive(true);
+    }
+
+    private IEnumerator MuzzleFlash(GameObject flash)
+    {
+        flash.SetActive(true);
+        print("Routine started");
+
+        yield return new WaitForSeconds(0.05f);
+
+        flash.SetActive(false);
+        print("Routine finished");
+    }
+
 }
