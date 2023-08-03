@@ -77,7 +77,7 @@ public class GunController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
-                StartCoroutine(ReloadGun());
+                StartCoroutine(ReloadGun());               
             }
         }
     }
@@ -143,12 +143,14 @@ public class GunController : MonoBehaviour
     private IEnumerator ReloadGun()
     {
         yield return new WaitForSeconds(1.5f);
-        ReloadM( ref m14Bullets, m14BulletsFull, ref canShootGun); 
+        ReloadM( ref m14Bullets, m14BulletsFull, ref canShootGun);
+        gunAmmo.text = m14Bullets.ToString();
     }
     private IEnumerator ReloadPistol()
     {
         yield return new WaitForSeconds(1.5f);
         ReloadM(ref handgunBullets, handgunBulletsFull, ref canShootPistol);
+        pistolAmmo.text = handgunBullets.ToString();
     }
 
 }

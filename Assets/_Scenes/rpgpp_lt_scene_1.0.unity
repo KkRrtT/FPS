@@ -4591,7 +4591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 20017f94d347ea447b2867b26d6aca1a, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 4babdbdf8375e0146b1a283906259d2c, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -25183,11 +25183,15 @@ PrefabInstance:
       objectReference: {fileID: 480983747}
     - target: {fileID: 1440092046361900606, guid: 1b6f4eaa9d21cff47bd6055052b82eb3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1559826371154749311, guid: 1b6f4eaa9d21cff47bd6055052b82eb3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1732961866795328423, guid: 1b6f4eaa9d21cff47bd6055052b82eb3, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1973383371776355397, guid: 1b6f4eaa9d21cff47bd6055052b82eb3, type: 3}
       propertyPath: m_IsActive
