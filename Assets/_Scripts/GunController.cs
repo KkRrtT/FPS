@@ -51,7 +51,8 @@ public class GunController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
-                StartCoroutine(ReloadPistol());
+                //StartCoroutine(ReloadPistol());
+                StartCoroutine(Reload(1));
             }
         }
         else if (manager.mode == true)
@@ -77,7 +78,8 @@ public class GunController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
-                StartCoroutine(ReloadGun());               
+                //StartCoroutine(ReloadGun());               
+                StartCoroutine(Reload(0));               
             }
         }
     }
@@ -152,5 +154,19 @@ public class GunController : MonoBehaviour
         ReloadM(ref handgunBullets, handgunBulletsFull, ref canShootPistol);
         pistolAmmo.text = handgunBullets.ToString();
     }
-
+    private IEnumerator Reload(int a)
+    {
+        yield return new WaitForSeconds(1.5f);
+        switch(a)
+        {
+            case 0:
+                {
+                    ReloadM(ref m14Bullets, m14BulletsFull, ref canShootGun); gunAmmo.text = m14Bullets.ToString(); break;
+                }
+            case 1:
+                {
+                    ReloadM(ref handgunBullets, handgunBulletsFull, ref canShootPistol); pistolAmmo.text = handgunBullets.ToString(); break;
+                }
+        }
+    }
 }
