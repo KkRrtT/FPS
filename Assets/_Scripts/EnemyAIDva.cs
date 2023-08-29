@@ -66,8 +66,9 @@ public class EnemyAIDva : MonoBehaviour
             isDead = true;
             isAttacking = false;
             agent.enabled = false;
-            gameManager.kills++;
-            gameManager.killsTekst.text = gameManager.kills.ToString();
+            gameManager.killsNew++;
+            gameManager.killsCurr = gameManager.killsNew + gameManager.kills;
+            gameManager.killsTekst.text =gameManager.killsCurr.ToString();
             Destroy(gameObject, 10);
             died = true;
         }

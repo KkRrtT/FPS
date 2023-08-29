@@ -19,9 +19,9 @@ public class GunController : MonoBehaviour
     public float damage;
     GameManager manager;
     private int m14BulletsFull = 30;
-    [SerializeField] int m14Bullets = default;
+    public int m14Bullets = default;
     private int handgunBulletsFull = 10;
-    private int handgunBullets = default;
+    public int handgunBullets = default;
     public float aimBloom = 10;
     [SerializeField] float speed = 50;
 
@@ -33,9 +33,17 @@ public class GunController : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
         aimBloom = 45;
         handgunBulletsFull = 10;
-        handgunBullets = 10;
         m14BulletsFull = 30;
-        m14Bullets = 30;
+        if (PlayerPrefs.HasKey("AmmoHandgun"))
+        {
+            handgunBullets = PlayerPrefs.GetInt("AmmoHandgun");
+            m14Bullets = PlayerPrefs.GetInt("AmmoGun");
+        }
+        else
+        {
+            m14Bullets = m14BulletsFull;
+            handgunBullets = handgunBulletsFull;
+        }
     }
 
     private void Update()

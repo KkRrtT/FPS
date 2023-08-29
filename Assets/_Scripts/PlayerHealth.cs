@@ -19,7 +19,14 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        if (PlayerPrefs.HasKey("CurrentHealth"))
+        {
+            currentHealth = PlayerPrefs.GetFloat("CurrentHealth");
+        }
+        else
+        {
+            currentHealth = maxHealth;
+        }
         deathFX.weight = 0f;
         ded.SetActive(false);
         control = GetComponent<PlayerControlViaAxis>();
